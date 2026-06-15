@@ -3,3 +3,9 @@ node_modules/
 public
 src/gatsby-types.d.ts
 .env*
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example

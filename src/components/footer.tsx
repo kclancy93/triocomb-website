@@ -1,36 +1,99 @@
 import { Link } from 'gatsby'
+import { Link as ScrollLink } from 'react-scroll'
 import React from 'react'
 import logo from '../assets/images/logo-light.png'
-import { FiDribbble, FiPhoneCall, FiInstagram, FiLinkedin, FiMail, FiShoppingCart, FiTwitter } from 'react-icons/fi'
+import { FiPhoneCall, FiMail } from 'react-icons/fi'
+
+const footerLinks = [
+    { to: 'about', label: 'About' },
+    { to: 'services', label: 'Services' },
+    { to: 'mission', label: 'Mission' },
+    { to: 'review', label: 'Testimonials' },
+    { to: 'contact', label: 'Contact' },
+]
 
 export default function Footer() {
     return (
-        <footer className="footer bg-slate-800 dark:bg-gray-900 relative text-gray-200 dark:text-gray-200">
-            <div className="py-[30px] px-0 border-t border-slate-800">
-                <div className="container relative text-center">
-                    <div className="grid lg:grid-cols-14 md:grid-cols-3 grid-cols-1 items-center">
-                        <div className="lg:col-span-2 md:text-start text-center">
-                            <Link to="#" className="text-[22px] focus:outline-none">
-                                <img src={logo} className="mx-auto md:me-auto md:ms-0" alt="" />
-                            </Link>
-                        </div>
+        <footer className="footer bg-clay-900 dark:bg-black text-white/70">
+            <div className="container py-16 lg:py-20">
+                <div className="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 gap-10">
+                    <div className="lg:col-span-5">
+                        <Link to="/" className="inline-block">
+                            <img src={logo} className="h-9 w-auto" alt="Comb" />
+                        </Link>
+                        <p className="mt-5 max-w-sm leading-relaxed text-white/60">
+                            A global talent agency connecting skilled engineers with U.S. clients — built on transparency, fair pay, and meaningful work.
+                        </p>
 
-                        <div className="lg:col-span-6 text-center mt-6 md:mt-0">
-                            <p className="mb-0">© {new Date().getFullYear()} Comb Inc. Design & Develop with <i className="mdi mdi-heart text-red-600"></i> by <a href="#" target="_blank" className="text-reset">Comb Devs</a>.</p>
-                        </div>
-
-                        <div className="subcribe-form lg:col-span-5">
-                            <form className="relative max-w-xl mx-auto">
-                                <input type="email" id="emailid" name="email" className="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-white dark:text-white rounded-full bg-white/[0.05] dark:bg-white/[0.05] dark:shadow-gray-800 border border-white/50" placeholder="Email..." />
-                                <button type="submit" className="px-6 tracking-wide inline-flex items-center justify-center font-medium absolute top-[2px] end-[3px] h-[46px] bg-teal-500 text-white rounded-full border border-white">Subscribe Now</button>
-                            </form>
-                        </div>
-
-                        <ul className="lg:col-span-1 list-none md:text-end text-center mt-6 md:mt-0">
-                            <li className="inline mx-[2px]"><a href="tel:+15133995139" target="_blank" className="size-8 inline-flex justify-center items-center border border-gray-700 dark:border-gray-800 rounded-md hover:border-teal-500 dark:hover:border-teal-500 hover:bg-teal-500 dark:hover:bg-teal-500"><FiPhoneCall className="size-4 align-middle" title="phone" /></a></li>
-                            <li className="inline mx-[2px]"><a href="mailto:support@triocomb.com" className="size-8 inline-flex justify-center items-center border border-gray-700 dark:border-gray-800 rounded-md hover:border-teal-500 dark:hover:border-teal-500 hover:bg-teal-500 dark:hover:bg-teal-500"><FiMail className="size-4 align-middle" title="email"></FiMail></a></li>
+                        <ul className="mt-6 flex items-center gap-2">
+                            <li>
+                                <a
+                                    href="tel:+15133995139"
+                                    className="size-10 inline-flex items-center justify-center rounded-full bg-white/5 hover:bg-teal-500 text-white transition-colors"
+                                    aria-label="Call us"
+                                >
+                                    <FiPhoneCall className="size-4" />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="mailto:support@triocomb.com"
+                                    className="size-10 inline-flex items-center justify-center rounded-full bg-white/5 hover:bg-teal-500 text-white transition-colors"
+                                    aria-label="Email us"
+                                >
+                                    <FiMail className="size-4" />
+                                </a>
+                            </li>
                         </ul>
                     </div>
+
+                    <div className="lg:col-span-3">
+                        <h4 className="font-fraunces text-lg text-white">Site</h4>
+                        <ul className="mt-5 space-y-3">
+                            {footerLinks.map(item => (
+                                <li key={item.to}>
+                                    <ScrollLink
+                                        to={item.to}
+                                        smooth
+                                        duration={500}
+                                        className="text-white/70 hover:text-teal-400 cursor-pointer transition-colors"
+                                    >
+                                        {item.label}
+                                    </ScrollLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="lg:col-span-4">
+                        <h4 className="font-fraunces text-lg text-white">Stay in touch</h4>
+                        <p className="mt-3 text-white/60 leading-relaxed">
+                            Occasional updates from the Comb team. No spam.
+                        </p>
+                        <form className="mt-5 relative max-w-md">
+                            <input
+                                type="email"
+                                name="email"
+                                className="w-full h-12 ps-5 pe-32 rounded-full bg-white/5 text-white placeholder:text-white/40 border border-white/15 focus:border-teal-400 focus:ring-4 focus:ring-teal-500/15 outline-none transition"
+                                placeholder="you@company.com"
+                            />
+                            <button
+                                type="submit"
+                                className="absolute end-1.5 top-1.5 h-9 px-5 inline-flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium transition-colors"
+                            >
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-white/50">
+                    <p>© {new Date().getFullYear()} Comb Inc. All rights reserved.</p>
+                    <p className="flex items-center gap-2">
+                        <span>Made with</span>
+                        <i className="mdi mdi-heart text-teal-400"></i>
+                        <span>by the Comb team</span>
+                    </p>
                 </div>
             </div>
         </footer>

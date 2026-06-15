@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    @apply text-[15px] text-slate-900 dark:text-white;
+    @apply text-base text-clay-700 bg-cream-50 dark:text-white dark:bg-slate-900;
 }
 
 .container {
@@ -14,9 +14,33 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    @apply font-libre-franklin;
+    @apply font-libre-franklin text-clay-700 dark:text-white;
+}
+
+.h-display {
+    @apply font-fraunces font-medium tracking-tight text-clay-700 dark:text-white;
 }
 
 p {
     @apply leading-relaxed;
+}
+
+/* Equalize tiny-slider slide heights so review cards match the tallest in view. */
+.tiny-three-item .tns-inner,
+.tiny-three-item .tns-ovh {
+    height: auto;
+}
+.tiny-three-item .tns-slider {
+    display: flex;
+}
+.tiny-three-item .tns-item {
+    display: flex;
+    height: auto;
+}
+.tiny-three-item .tiny-slide {
+    display: flex;
+    width: 100%;
+}
+.tiny-three-item .tiny-slide > * {
+    width: 100%;
 }

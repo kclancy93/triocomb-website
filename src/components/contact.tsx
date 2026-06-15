@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import emailjs from '@emailjs/browser'
-import contact from '../assets/images/contact.svg'
 
 export default function Contact() {
     const [loading, setLoading] = useState(false)
@@ -24,83 +23,145 @@ export default function Contact() {
             setLoading(false)
             return
         }
-        
-        const timestampInput = e.currentTarget.querySelector('#time') as HTMLInputElement
+
+        const serviceId = process.env.GATSBY_SERVICE_ID?.trim()
+        const templateId = process.env.GATSBY_TEMPLATE_ID?.trim()
+        const publicKey = process.env.GATSBY_PUBLIC_KEY?.trim()
+
+        if (!serviceId || !templateId || !publicKey) {
+            setError('Email service is not configured. Please try again later.')
+            setLoading(false)
+            return
+        }
+
+        const timestampInput = form.querySelector('#time') as HTMLInputElement
         timestampInput.value = new Date().toISOString()
 
         try {
-            
-            await emailjs.sendForm(
-                process.env.GATSBY_SERVICE_ID,
-                process.env.GATSBY_TEMPLATE_ID,
-                e.currentTarget,
-                process.env.GATSBY_PUBLIC_KEY
-            )
-            setSuccess(true);
-            (e.target as HTMLFormElement).reset()
+            await emailjs.sendForm(serviceId, templateId, form, publicKey)
+            setSuccess(true)
+            form.reset()
         } catch (err) {
+            console.error('EmailJS sendForm failed:', err)
             setError('Failed to send message. Please try again later.')
         } finally {
             setLoading(false)
         }
     }
 
-    return (
-        <section className="relative lg:py-24 py-16 bg-slate-50 dark:bg-slate-800" id="contact">
-            <div className="container relative">
-                <div className="grid grid-cols-1 pb-6 text-center">
-                    <h3 className="font-semibold text-2xl leading-normal mb-4">Get in touch </h3>
+    const inputClass = "mt-2 w-full h-12 px-4 rounded-xl border border-cream-200 bg-white dark:bg-slate-900 dark:border-gray-700 dark:text-white text-clay-700 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/15 outline-none transition"
 
-                    <p className="text-slate-400 text-lg max-w-2xl mx-auto">We're always excited to connect with talents and forward-thinking clients. <br />Please reach out to us using the form below, and we'll get back to you as soon as possible.</p>
+    return (
+        <section className="relative md:py-28 py-20 bg-cream-50 dark:bg-slate-800" id="contact">
+            <div className="container relative">
+                <div className="grid grid-cols-1 pb-12 max-w-2xl mx-auto text-center">
+                    <span className="inline-flex items-center justify-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
+                        <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
+                        Get in touch
+                        <span className="inline-block w-6 h-px bg-teal-600 ms-3"></span>
+                    </span>
+
+                    <h2 className="font-fraunces font-medium text-3xl lg:text-5xl text-clay-700 dark:text-white leading-[1.15] tracking-tight mt-5">
+                        Let's talk about your project.
+                    </h2>
+
+                    <p className="text-lg text-clay-500 dark:text-white/70 leading-[1.75] mt-5">
+                        Whether you're a client looking to scale your team or an engineer ready to take on new work — drop us a note. We read every message.
+                    </p>
                 </div>
 
-                <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-6">
-                    <div className="lg:col-span-7 md:col-span-6">
-                        <img src={contact} alt="" />
+                <div className="grid lg:grid-cols-12 grid-cols-1 items-start gap-8">
+                    <div className="lg:col-span-5">
+                        <div className="bg-clay-900 text-white rounded-3xl p-8 lg:p-10 h-full">
+                            <h3 className="font-fraunces text-2xl font-medium !text-white">
+                                Reach us directly
+                            </h3>
+                            <p className="mt-3 text-white/80 leading-relaxed">
+                                We typically reply within one business day. For urgent matters, email us — it's the fastest path to a human.
+                            </p>
+
+                            <ul className="mt-8 space-y-6">
+                                <li className="flex items-start gap-4">
+                                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-teal-400 shrink-0">
+                                        <i className="mdi mdi-email-outline text-xl"></i>
+                                    </span>
+                                    <div>
+                                        <div className="text-xs text-white/60 uppercase tracking-[0.18em] font-medium">Email</div>
+                                        <a href="mailto:support@triocomb.com" className="block mt-1 text-white hover:text-teal-400 transition-colors">
+                                            support@triocomb.com
+                                        </a>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-4">
+                                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-teal-400 shrink-0">
+                                        <i className="mdi mdi-phone-outline text-xl"></i>
+                                    </span>
+                                    <div>
+                                        <div className="text-xs text-white/60 uppercase tracking-[0.18em] font-medium">Phone</div>
+                                        <a href="tel:+15133995139" className="block mt-1 text-white hover:text-teal-400 transition-colors">
+                                            +1 (513) 399-5139
+                                        </a>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-4">
+                                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-teal-400 shrink-0">
+                                        <i className="mdi mdi-clock-outline text-xl"></i>
+                                    </span>
+                                    <div>
+                                        <div className="text-xs text-white/60 uppercase tracking-[0.18em] font-medium">Response time</div>
+                                        <span className="block mt-1 text-white">Within 1 business day</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div className="lg:col-span-5 md:col-span-6">
-                        <div className="lg:ms-5">
-                            <div className="bg-white dark:bg-slate-900 rounded-md shadow-sm dark:shadow-gray-700 p-6">
-                                <form onSubmit={handleSubmit}>
-                                    <div className="grid lg:grid-cols-12 grid-cols-1 gap-3">
-                                        <div className="lg:col-span-6">
-                                            <label htmlFor="name" className="font-semibold">Your Name:</label>
-                                            <input name="name" id="name" type="text" className="mt-2 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Name :" />
-                                        </div>
-
-                                        <div className="lg:col-span-6">
-                                            <label htmlFor="email" className="font-semibold">Your Email:</label>
-                                            <input name="email" id="email" type="email" className="mt-2 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Email :" />
-                                        </div>
-
-                                        <div className="lg:col-span-12">
-                                            <label htmlFor="subject" className="font-semibold">Your Question:</label>
-                                            <input name="subject" id="subject" className="mt-2 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Subject :" />
-                                        </div>
-
-                                        <div className="lg:col-span-12">
-                                            <label htmlFor="message" className="font-semibold">Your Comment:</label>
-                                            <textarea name="message" id="message" className="mt-2 w-full py-2 px-3 h-28 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 dark:border-gray-800 focus:ring-0" placeholder="Message :"></textarea>
-                                        </div>
-
-                                        <input 
-                                            type="hidden" 
-                                            name="time" 
-                                            id="time"
-                                        />
+                    <div className="lg:col-span-7">
+                        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-cream-200 dark:border-gray-700 p-6 md:p-8 lg:p-10">
+                            <form onSubmit={handleSubmit} noValidate>
+                                <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+                                    <div>
+                                        <label htmlFor="name" className="text-sm font-medium text-clay-700 dark:text-white">Your name</label>
+                                        <input name="name" id="name" type="text" className={inputClass} placeholder="Jane Doe" />
                                     </div>
-                                    {error && <p className="text-red-500 mt-2">{error}</p>}
-                                    {success && <p className="text-green-500 mt-2">Message sent successfully!</p>}
-                                    <button
-                                        type="submit"
-                                        disabled={loading}
-                                        className="h-10 px-6 tracking-wide inline-flex items-center justify-center font-medium rounded-md bg-teal-500 text-white mt-2 disabled:opacity-50"
-                                    >
-                                        {loading ? 'Sending...' : 'Send Message'}
-                                    </button>
-                                </form>
-                            </div>
+
+                                    <div>
+                                        <label htmlFor="email" className="text-sm font-medium text-clay-700 dark:text-white">Your email</label>
+                                        <input name="email" id="email" type="email" className={inputClass} placeholder="you@company.com" />
+                                    </div>
+
+                                    <div className="lg:col-span-2">
+                                        <label htmlFor="subject" className="text-sm font-medium text-clay-700 dark:text-white">Subject</label>
+                                        <input name="subject" id="subject" className={inputClass} placeholder="What's this about?" />
+                                    </div>
+
+                                    <div className="lg:col-span-2">
+                                        <label htmlFor="message" className="text-sm font-medium text-clay-700 dark:text-white">Your message</label>
+                                        <textarea name="message" id="message" className="mt-2 w-full px-4 py-3 h-36 rounded-xl border border-cream-200 bg-white dark:bg-slate-900 dark:border-gray-700 dark:text-white text-clay-700 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/15 outline-none transition resize-y leading-relaxed" placeholder="Tell us a little about what you're working on..."></textarea>
+                                    </div>
+
+                                    <input type="hidden" name="time" id="time" />
+                                </div>
+
+                                {error && (
+                                    <p className="mt-4 text-sm text-red-600 bg-red-50 dark:bg-red-950/30 rounded-lg px-4 py-3">
+                                        {error}
+                                    </p>
+                                )}
+                                {success && (
+                                    <p className="mt-4 text-sm text-emerald-700 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg px-4 py-3">
+                                        Thanks — your message is on its way. We'll be in touch soon.
+                                    </p>
+                                )}
+
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="mt-6 h-12 px-8 inline-flex items-center justify-center font-medium rounded-full bg-teal-500 hover:bg-teal-600 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {loading ? 'Sending…' : 'Send message'}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

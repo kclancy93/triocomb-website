@@ -15,71 +15,90 @@ interface ClientData {
     rate: string[];
 }
 
+const settings = {
+    container: '.tiny-three-item',
+    controls: false,
+    mouseDrag: true,
+    loop: true,
+    rewind: true,
+    autoplay: true,
+    autoplayButtonOutput: false,
+    autoplayTimeout: 5000,
+    navPosition: 'bottom',
+    speed: 600,
+    gutter: 24,
+    responsive: {
+        992: { items: 2 },
+        767: { items: 2 },
+        320: { items: 1 },
+    },
+}
+
+function TestimonialCard({ item }: { item: ClientData }) {
+    return (
+        <div className="h-full bg-cream-50 dark:bg-slate-800 border border-cream-200 dark:border-gray-700 rounded-3xl p-8 flex flex-col">
+            <i className="mdi mdi-format-quote-open mdi-36px text-teal-500/70 leading-none"></i>
+
+            <p className="mt-2 flex-1 font-fraunces italic text-lg leading-[1.55] text-clay-700 dark:text-white">
+                {item.desc.replace(/^"\s*|\s*"$/g, '').replace(/^"|"$/g, '')}
+            </p>
+
+            <div className="mt-6 flex items-center gap-4 pt-6 border-t border-cream-200 dark:border-gray-700">
+                <img src={item.image} className="size-12 rounded-full object-cover" alt="" />
+                <div className="flex-1">
+                    <h6 className="font-medium text-clay-700 dark:text-white">{item.name}</h6>
+                    <span className="text-sm text-clay-500 dark:text-white/60">{item.position}</span>
+                </div>
+                <ul className="list-none text-amber-400 text-sm flex">
+                    {item.rate.map((el, i) => (
+                        <li key={i + 'rate-item'}><i className={el}></i></li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    )
+}
+
 export default function Client() {
-    const settings = {
-        container: '.tiny-three-item',
-        controls: false,
-        mouseDrag: true,
-        loop: true,
-        rewind: true,
-        autoplay: true,
-        autoplayButtonOutput: false,
-        autoplayTimeout: 3000,
-        navPosition: "bottom",
-        speed: 400,
-        gutter: 12,
-        responsive: {
-            992: {
-                items: 3
-            },
+    return (
+        <section className="relative md:py-28 py-20 bg-cream-100 dark:bg-slate-800" id="review">
+            <div className="container relative">
+                <div className="grid grid-cols-1 pb-12 max-w-2xl mx-auto text-center">
+                    <span className="inline-flex items-center justify-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
+                        <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
+                        Testimonials
+                        <span className="inline-block w-6 h-px bg-teal-600 ms-3"></span>
+                    </span>
 
-            767: {
-                items: 2
-            },
+                    <h2 className="font-fraunces font-medium text-3xl lg:text-5xl text-clay-700 dark:text-white leading-[1.15] tracking-tight mt-5">
+                        Partnerships that last.
+                    </h2>
 
-            320: {
-                items: 1
-            },
-        },
-    };
-    if (typeof window !== 'undefined') {
-        return (
-            <section className="relative md:py-24 py-16 bg-slate-50" id="review">
-                <div className="container relative">
-                    <div className="grid grid-cols-1 pb-6 text-center">
-                        <h3 className="font-semibold text-2xl leading-normal mb-4">What Our Users Say</h3>
-                        <p className="text-slate-400 max-w-xl mx-auto">Our clients trust us to deliver talented engineers who not only meet expectations—but often exceed them. Through smooth collaboration, reliable results, and transparent communication, we’ve built partnerships that last.</p>
-                    </div>
+                    <p className="text-lg text-clay-500 dark:text-white/70 leading-[1.75] mt-5">
+                        Our clients trust us to deliver engineers who meet expectations and often exceed them — through smooth collaboration, reliable results, and transparent communication.
+                    </p>
+                </div>
 
-                    <div className="grid grid-cols-1 mt-6">
+                <div className="grid grid-cols-1 mt-6">
+                    {typeof window === 'undefined' ? (
+                        <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
+                            {clientData.slice(0, 2).map((item, i) => (
+                                <TestimonialCard key={i + 'static-client'} item={item} />
+                            ))}
+                        </div>
+                    ) : (
                         <div className="tiny-three-item">
                             <TinySlider settings={settings}>
                                 {clientData.map((item: ClientData, index: number) => (
-                                    <div className="tiny-slide text-center" key={index + 'client-item'}>
-                                        <div className="cursor-e-resize">
-                                            <div className="h-[400px] content relative rounded shadow-sm dark:shadow-gray-700 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left">
-                                                <i className="mdi mdi-format-quote-open mdi-48px text-teal-500"></i>
-                                                <p className="text-slate-400 min-h-[245px]">{item.desc}</p>
-                                                <ul className="list-none mb-0 text-amber-400 mt-3">
-                                                    {item.rate.map((el, index: number) => (
-                                                        <li className="inline" key={index + 'rate-item'}><i className={el}></i></li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-
-                                            <div className="text-center mt-5">
-                                                <img src={item.image} className="size-14 rounded-full shadow-md dark:shadow-gray-700 mx-auto" alt="" />
-                                                <h6 className="mt-2 font-semibold">{item.name}</h6>
-                                                <span className="text-slate-400 text-sm">{item.position}</span>
-                                            </div>
-                                        </div>
+                                    <div className="tiny-slide pb-4" key={index + 'client-item'}>
+                                        <TestimonialCard item={item} />
                                     </div>
                                 ))}
                             </TinySlider>
                         </div>
-                    </div>
+                    )}
                 </div>
-            </section>
-        )
-    }
+            </div>
+        </section>
+    )
 }

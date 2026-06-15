@@ -34,15 +34,17 @@ export default function Mission() {
     return (
         <section className="relative md:py-28 py-20 bg-white dark:bg-slate-900" id="mission">
             <div className="container relative">
-                <div className="grid grid-cols-1 pb-12 max-w-2xl mx-auto text-center">
-                    <span className="inline-flex items-center justify-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
-                        <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
-                        Our mission
-                        <span className="inline-block w-6 h-px bg-teal-600 ms-3"></span>
+                <div className="grid grid-cols-1 pb-14 max-w-2xl mx-auto text-center">
+                    <span className="inline-flex items-center justify-center gap-3">
+                        <span className="font-fraunces italic text-base text-clay-500 dark:text-white/60">No. 03</span>
+                        <span className="inline-block w-6 h-px bg-teal-600"></span>
+                        <span className="text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">Our mission</span>
                     </span>
 
                     <h2 className="font-fraunces font-medium text-3xl lg:text-5xl text-clay-700 dark:text-white leading-[1.15] tracking-tight mt-5">
-                        Fair, flexible, supportive — wherever the work happens.
+                        Fair, flexible,{' '}
+                        <span className="italic font-normal text-teal-600">supportive</span>{' '}
+                        — wherever the work happens.
                     </h2>
 
                     <p className="text-lg text-clay-500 dark:text-white/70 leading-[1.75] mt-5">

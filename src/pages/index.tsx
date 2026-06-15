@@ -39,61 +39,79 @@ export default function IndexHome() {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-32 -end-32 w-[520px] h-[520px] rounded-full bg-teal-500/10 blur-3xl"
+          className="pointer-events-none absolute -top-40 -end-40 w-[640px] h-[640px] rounded-full bg-gradient-to-br from-teal-400/20 via-teal-500/10 to-transparent blur-3xl"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 -start-24 w-[360px] h-[360px] rounded-full bg-cream-100 blur-2xl opacity-70"
+          className="pointer-events-none absolute bottom-0 -start-32 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-amber-200/40 via-cream-100 to-transparent blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-multiply"
+          style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>\")" }}
         />
 
         <div className="container relative">
           <div className="grid lg:grid-cols-12 grid-cols-1 items-center gap-10 lg:gap-16">
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
-                <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
+              <span className="inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">
+                <span className="inline-block w-8 h-px bg-teal-600"></span>
                 A global talent agency
+                <span className="text-teal-500/60">✦</span>
               </span>
 
-              <h1 className="font-fraunces font-medium text-4xl md:text-5xl lg:text-6xl text-clay-700 dark:text-white leading-[1.1] tracking-tight mt-5">
-                Where world-class talent meets the work that matters.
+              <h1 className="font-fraunces font-medium text-5xl md:text-6xl lg:text-[5.25rem] text-clay-700 dark:text-white leading-[1.05] tracking-tight mt-6">
+                Where world-class talent meets the work{' '}
+                <span className="relative inline-block italic font-normal text-teal-600">
+                  that matters
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 200 12"
+                    preserveAspectRatio="none"
+                    className="absolute left-0 -bottom-2 w-full h-3 text-teal-500/60"
+                  >
+                    <path d="M2 8 Q 50 1, 100 6 T 198 5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                  </svg>
+                </span>
+                .
               </h1>
 
-              <p className="mt-6 text-lg text-clay-500 dark:text-white/70 max-w-[58ch] leading-[1.75]">
+              <p className="mt-8 text-lg text-clay-500 dark:text-white/70 max-w-[58ch] leading-[1.75]">
                 Comb connects skilled engineers with U.S. clients navigating life's pivots and career disruptions. We build long-term partnerships rooted in transparency, fair pay, and meaningful work — wherever in the world you are.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-10 flex flex-wrap items-center gap-3">
                 <ScrollLink
                   to="contact"
                   smooth
                   duration={500}
-                  className="h-12 px-7 inline-flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-600 text-white font-medium cursor-pointer transition-colors shadow-sm"
+                  className="group h-12 px-7 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-medium cursor-pointer shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/35 hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Start a conversation
+                  <i className="mdi mdi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
                 </ScrollLink>
                 <ScrollLink
                   to="about"
                   smooth
                   duration={500}
-                  className="h-12 px-2 inline-flex items-center justify-center text-clay-700 dark:text-white font-medium cursor-pointer hover:text-teal-600 transition-colors"
+                  className="group h-12 px-5 inline-flex items-center justify-center gap-2 rounded-full border border-clay-700/15 dark:border-white/15 text-clay-700 dark:text-white font-medium cursor-pointer hover:border-teal-600 hover:text-teal-600 transition-colors"
                 >
                   How we work
-                  <i className="mdi mdi-arrow-right ms-1.5"></i>
                 </ScrollLink>
               </div>
 
-              <dl className="mt-12 grid grid-cols-3 gap-6 max-w-md">
-                <div>
-                  <dt className="font-fraunces text-3xl font-medium text-clay-700 dark:text-white">15+</dt>
-                  <dd className="mt-1 text-sm text-clay-500 dark:text-white/60">Years building teams</dd>
+              <dl className="mt-14 flex items-stretch max-w-lg divide-x divide-cream-200 dark:divide-gray-700">
+                <div className="pe-6">
+                  <dt className="font-fraunces text-4xl font-medium text-clay-700 dark:text-white leading-none">15<span className="text-teal-600">+</span></dt>
+                  <dd className="mt-2 text-xs uppercase tracking-[0.15em] text-clay-500 dark:text-white/60">Years building teams</dd>
                 </div>
-                <div>
-                  <dt className="font-fraunces text-3xl font-medium text-clay-700 dark:text-white">200+</dt>
-                  <dd className="mt-1 text-sm text-clay-500 dark:text-white/60">Engineers in network</dd>
+                <div className="px-6">
+                  <dt className="font-fraunces text-4xl font-medium text-clay-700 dark:text-white leading-none">200<span className="text-teal-600">+</span></dt>
+                  <dd className="mt-2 text-xs uppercase tracking-[0.15em] text-clay-500 dark:text-white/60">Engineers in network</dd>
                 </div>
-                <div>
-                  <dt className="font-fraunces text-3xl font-medium text-clay-700 dark:text-white">100%</dt>
-                  <dd className="mt-1 text-sm text-clay-500 dark:text-white/60">Equal pay, anywhere</dd>
+                <div className="ps-6">
+                  <dt className="font-fraunces text-4xl font-medium text-clay-700 dark:text-white leading-none">100<span className="text-teal-600">%</span></dt>
+                  <dd className="mt-2 text-xs uppercase tracking-[0.15em] text-clay-500 dark:text-white/60">Equal pay, anywhere</dd>
                 </div>
               </dl>
             </div>

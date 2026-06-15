@@ -54,15 +54,17 @@ export default function Contact() {
     return (
         <section className="relative md:py-28 py-20 bg-cream-50 dark:bg-slate-800" id="contact">
             <div className="container relative">
-                <div className="grid grid-cols-1 pb-12 max-w-2xl mx-auto text-center">
-                    <span className="inline-flex items-center justify-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
-                        <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
-                        Get in touch
-                        <span className="inline-block w-6 h-px bg-teal-600 ms-3"></span>
+                <div className="grid grid-cols-1 pb-14 max-w-2xl mx-auto text-center">
+                    <span className="inline-flex items-center justify-center gap-3">
+                        <span className="font-fraunces italic text-base text-clay-500 dark:text-white/60">No. 06</span>
+                        <span className="inline-block w-6 h-px bg-teal-600"></span>
+                        <span className="text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">Get in touch</span>
                     </span>
 
                     <h2 className="font-fraunces font-medium text-3xl lg:text-5xl text-clay-700 dark:text-white leading-[1.15] tracking-tight mt-5">
-                        Let's talk about your project.
+                        Let's{' '}
+                        <span className="italic font-normal text-teal-600">talk</span>{' '}
+                        about your project.
                     </h2>
 
                     <p className="text-lg text-clay-500 dark:text-white/70 leading-[1.75] mt-5">
@@ -157,9 +159,9 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="mt-6 h-12 px-8 inline-flex items-center justify-center font-medium rounded-full bg-teal-500 hover:bg-teal-600 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="group mt-6 h-12 px-8 inline-flex items-center justify-center gap-2 font-medium rounded-full bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-md shadow-teal-500/25 hover:shadow-lg hover:shadow-teal-500/35 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                                 >
-                                    {loading ? 'Sending…' : 'Send message'}
+                                    {loading ? 'Sending…' : (<>Send message<i className="mdi mdi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i></>)}
                                 </button>
                             </form>
                         </div>

@@ -46,9 +46,10 @@ export default function NavbarLight() {
                         spy={true}
                         smooth={true}
                         duration={500}
-                        className="hidden lg_992:inline-flex h-10 px-5 items-center justify-center rounded-full bg-clay-900 hover:bg-teal-500 text-white text-sm font-medium cursor-pointer transition-colors"
+                        className="group hidden lg_992:inline-flex h-10 px-5 items-center justify-center gap-2 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-sm font-medium cursor-pointer shadow-md shadow-teal-500/25 hover:shadow-lg hover:shadow-teal-500/35 transition-all duration-300"
                     >
                         Talk to us
+                        <i className="mdi mdi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
                     </Link1>
                     <button
                         onClick={(e) => { e.preventDefault(); setMenu(!menu) }}

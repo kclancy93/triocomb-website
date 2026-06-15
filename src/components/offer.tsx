@@ -11,15 +11,16 @@ export default function Offer() {
     return (
         <section className="relative md:py-28 py-20 bg-white dark:bg-slate-900" id="offer">
             <div className="container relative">
-                <div className="grid grid-cols-1 pb-12 max-w-2xl mx-auto text-center">
-                    <span className="inline-flex items-center justify-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
-                        <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
-                        What we offer
-                        <span className="inline-block w-6 h-px bg-teal-600 ms-3"></span>
+                <div className="grid grid-cols-1 pb-14 max-w-2xl mx-auto text-center">
+                    <span className="inline-flex items-center justify-center gap-3">
+                        <span className="font-fraunces italic text-base text-clay-500 dark:text-white/60">No. 05</span>
+                        <span className="inline-block w-6 h-px bg-teal-600"></span>
+                        <span className="text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">What we offer</span>
                     </span>
 
                     <h2 className="font-fraunces font-medium text-3xl lg:text-5xl text-clay-700 dark:text-white leading-[1.15] tracking-tight mt-5">
-                        A collaborative environment where everyone scales.
+                        A collaborative environment where everyone{' '}
+                        <span className="italic font-normal text-teal-600">scales</span>.
                     </h2>
 
                     <p className="text-lg text-clay-500 dark:text-white/70 leading-[1.75] mt-5">
@@ -30,17 +31,20 @@ export default function Offer() {
                 <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 mt-6 gap-8 lg:gap-10">
                     {offerData.map((item: OfferData, index: number) => (
                         <article className="group" key={index + 'offer-item'}>
-                            <div className="relative overflow-hidden rounded-3xl bg-cream-100">
+                            <div className="relative overflow-hidden rounded-3xl bg-cream-100 shadow-sm transition-shadow duration-500 group-hover:shadow-xl group-hover:shadow-clay-900/10">
                                 <img
                                     src={item.image}
-                                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                                    className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                                     alt=""
                                 />
-                                <div className="absolute inset-0 bg-teal-500/0 group-hover:bg-teal-500/10 transition-colors duration-500" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-clay-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="absolute top-5 start-5 font-fraunces italic text-sm text-white/90 bg-clay-900/40 backdrop-blur px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    0{index + 1}
+                                </div>
                             </div>
 
                             <div className="mt-6">
-                                <h3 className="font-fraunces text-2xl font-medium text-clay-700 dark:text-white">
+                                <h3 className="font-fraunces text-2xl font-medium text-clay-700 dark:text-white transition-colors group-hover:text-teal-600">
                                     {item.title}
                                 </h3>
                                 <p className="text-clay-500 dark:text-white/70 leading-relaxed mt-3 max-w-prose">

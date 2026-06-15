@@ -34,13 +34,15 @@ export default function About() {
 
                     <div className="md:col-span-6">
                         <div className="lg:ms-6">
-                            <span className="inline-flex items-center text-xs font-semibold tracking-[0.18em] uppercase text-teal-600">
-                                <span className="inline-block w-6 h-px bg-teal-600 me-3"></span>
-                                Who we are
+                            <span className="inline-flex items-center gap-3">
+                                <span className="font-fraunces italic text-base text-clay-500 dark:text-white/60">No. 01</span>
+                                <span className="inline-block w-6 h-px bg-teal-600"></span>
+                                <span className="text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">Who we are</span>
                             </span>
 
                             <h2 className="font-fraunces font-medium text-3xl lg:text-5xl text-clay-700 dark:text-white leading-[1.15] tracking-tight mt-5">
-                                A talent agency for the moments work gets complicated.
+                                A talent agency for the moments work gets{' '}
+                                <span className="italic font-normal text-teal-600">complicated</span>.
                             </h2>
 
                             <p className="text-lg text-clay-500 dark:text-white/70 leading-[1.75] mt-6 max-w-[58ch]">
@@ -51,14 +53,15 @@ export default function About() {
                                 Whether you're stepping in to keep a project on track or leading a new build across web, mobile, or cloud — Comb makes it easy to connect, work, and succeed.
                             </p>
 
-                            <div className="mt-8 flex flex-wrap items-center gap-4">
+                            <div className="mt-10 flex flex-wrap items-center gap-3">
                                 <ScrollLink
                                     to="services"
                                     smooth
                                     duration={500}
-                                    className="h-11 px-6 inline-flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium cursor-pointer transition-colors"
+                                    className="group h-11 px-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-sm font-medium cursor-pointer shadow-md shadow-teal-500/25 hover:shadow-lg hover:shadow-teal-500/35 hover:-translate-y-0.5 transition-all duration-300"
                                 >
                                     See what we do
+                                    <i className="mdi mdi-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
                                 </ScrollLink>
                                 <ScrollLink
                                     to="contact"

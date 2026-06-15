@@ -79,7 +79,7 @@ export default function Footer() {
                             />
                             <button
                                 type="submit"
-                                className="absolute end-1.5 top-1.5 h-9 px-5 inline-flex items-center justify-center rounded-full bg-teal-500 hover:bg-teal-600 text-white text-sm font-medium transition-colors"
+                                className="absolute end-1.5 top-1.5 h-9 px-5 inline-flex items-center justify-center rounded-full bg-gradient-to-br from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-sm font-medium shadow-md shadow-teal-500/25 transition-all duration-300"
                             >
                                 Subscribe
                             </button>

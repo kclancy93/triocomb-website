@@ -1,28 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import logoDark from '../assets/images/logo-dark.png'
 import logoLight from '../assets/images/logo-light.png'
 import { Link } from 'gatsby'
 import { Link as ScrollLink } from 'react-scroll'
 
 export default function NavbarLight() {
-    const [scroll, setScroll] = useState<boolean>(false)
     const [menu, setMenu] = useState<boolean>(false)
-
-    const handleScroll = useCallback(() => {
-        if (typeof window !== 'undefined') {
-            setScroll(window.scrollY > 50)
-        }
-    }, [])
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', handleScroll)
-            return () => {
-                window.removeEventListener('scroll', handleScroll)
-            }
-        }
-    }, [handleScroll])
 
     const navItems = [
         { to: 'home', label: 'Home' },
@@ -35,10 +18,10 @@ export default function NavbarLight() {
     const pillClasses = [
         'inline-flex h-14 md:h-16 items-center gap-6 md:gap-8',
         'rounded-full border px-2 pl-4 md:px-3 md:pl-5',
+        'border-[#e8e8ee]/40 dark:border-white/10',
+        'bg-white/40 dark:bg-slate-900/40',
         'backdrop-blur-xl transition-all duration-300',
-        scroll
-            ? 'border-clay-700/10 dark:border-white/10 bg-white/80 dark:bg-slate-900/70 shadow-lg shadow-clay-700/10'
-            : 'border-clay-700/10 dark:border-white/10 bg-white/50 dark:bg-slate-900/40 shadow-md shadow-clay-700/5',
+        'shadow-[0_2px_8px_-2px_#1118270f,0_4px_16px_-4px_#1118270a]',
     ].join(' ')
 
     return (
@@ -91,7 +74,7 @@ export default function NavbarLight() {
 
             <div
                 id="mobile-menu"
-                className={`lg_992:hidden absolute left-4 right-4 top-full mt-2 rounded-2xl border border-clay-700/10 dark:border-white/10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-lg shadow-clay-700/10 overflow-hidden transition-all duration-300 ${menu ? 'opacity-100 max-h-[480px]' : 'opacity-0 max-h-0 pointer-events-none'}`}
+                className={`lg_992:hidden absolute left-4 right-4 top-full mt-2 rounded-2xl border border-[#e8e8ee]/40 dark:border-white/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_2px_8px_-2px_#1118270f,0_4px_16px_-4px_#1118270a] overflow-hidden transition-all duration-300 ${menu ? 'opacity-100 max-h-[480px]' : 'opacity-0 max-h-0 pointer-events-none'}`}
             >
                 <ul className="flex flex-col py-2">
                     {navItems.map(item => (

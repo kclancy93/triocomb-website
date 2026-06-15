@@ -35,7 +35,6 @@ export default function About() {
                     <div className="md:col-span-6">
                         <div className="lg:ms-6">
                             <span className="inline-flex items-center gap-3">
-                                <span className="font-fraunces italic text-base text-clay-500 dark:text-white/60">No. 01</span>
                                 <span className="inline-block w-6 h-px bg-teal-600"></span>
                                 <span className="text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">Who we are</span>
                             </span>

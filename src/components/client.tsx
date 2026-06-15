@@ -65,7 +65,6 @@ export default function Client() {
             <div className="container relative">
                 <div className="grid grid-cols-1 pb-14 max-w-2xl mx-auto text-center">
                     <span className="inline-flex items-center justify-center gap-3">
-                        <span className="font-fraunces italic text-base text-clay-500 dark:text-white/60">No. 04</span>
                         <span className="inline-block w-6 h-px bg-teal-600"></span>
                         <span className="text-xs font-semibold tracking-[0.22em] uppercase text-teal-600">Testimonials</span>
                     </span>

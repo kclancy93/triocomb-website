@@ -35,7 +35,7 @@ export default function IndexHome() {
 
       <section
         id="home"
-        className="relative bg-cream-50 dark:bg-slate-900 pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+        className="relative isolate bg-cream-50 dark:bg-slate-900 pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
       >
         <div
           aria-hidden="true"

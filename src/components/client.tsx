@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { clientData } from '../data/data'
 
 const TinySlider = React.lazy(() =>
@@ -60,6 +60,9 @@ function TestimonialCard({ item }: { item: ClientData }) {
 }
 
 export default function Client() {
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => setMounted(true), [])
+
     return (
         <section className="relative md:py-28 py-20 bg-cream-100 dark:bg-slate-800" id="review">
             <div className="container relative">
@@ -80,7 +83,7 @@ export default function Client() {
                 </div>
 
                 <div className="grid grid-cols-1 mt-6">
-                    {typeof window === 'undefined' ? (
+                    {!mounted ? (
                         <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
                             {clientData.slice(0, 2).map((item, i) => (
                                 <TestimonialCard key={i + 'static-client'} item={item} />
